@@ -1,6 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
+<br>
+<br>
+<br>
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-12">
@@ -9,7 +12,7 @@
                         <div class="col-6">
                             <h5>Hasil tes</h5>
                         </div>
-                        <div class="col-6">
+                        <div class="col-6 button-align-right">
                             <a href="{{ route('siswa.home') }}" class="btn btn-danger btn-sm float-end">Kembali</a>
                         </div>
                     </div>
@@ -278,6 +281,7 @@
                                         <tr>
                                             <th>Nama</th>
                                             <th>Nilai Probabilitas</th>
+                                            <th>Rekomendasi Jurusan</th>
                                         </tr>
                                         <tr>
                                             <td>
@@ -286,6 +290,23 @@
                                                 @endfor
                                             </td>
                                             <td>{{$nilaipenyterbesar}}</td>
+                                        </tr>
+                                    </table>
+                                    <table class="table table-bordered text-center">
+                                        <tr>
+                                            <th>Tipe Kepribadian</th>
+                                            <th>Rekomendasi Jurusan</th>
+                                        </tr>
+                                        <tr>
+                                            <th>Realistic</th>
+                                            <th>
+                                                <ul>
+                                                    <li>
+                                                        <li>
+                                                        <li>
+                                                            <li>
+                                                </ul>
+                                            </th>
                                         </tr>
                                     </table>
                                 </div>

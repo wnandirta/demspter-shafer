@@ -1,6 +1,6 @@
 <!-- Main Footer -->
 <footer class="main-footer">
-    <strong>Copyright &copy; 2023 <a href="/">Materi</a>.</strong>All rights reserved.
+    <strong>Copyright &copy; 2023 Wahyu Nandira B.</strong>
 </footer>
 
 <!-- Control Sidebar -->

@@ -9,54 +9,34 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'TalinTest') }}</title>
+    <title>{{ config('app.TalinTest') }}</title>
 
     <!--====== Favicon Icon ======-->
     <link rel="shortcut icon" href="landp/assets/images/favicon.png" type="image/png">
 
     <!--====== Bootstrap css ======-->
-    <link rel="stylesheet" href="landp/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ asset('landp/assets/css/bootstrap.min.css') }}">
 
     <!--====== Line Icons css ======-->
-    <link rel="stylesheet" href="landp/assets/css/LineIcons.css">
+    <link rel="stylesheet" href="{{ asset('landp/assets/css/LineIcons.css') }}">
 
     <!--====== Magnific Popup css ======-->
-    <link rel="stylesheet" href="landp/assets/css/magnific-popup.css">
+    <link rel="stylesheet" href="{{ asset('landp/assets/css/magnific-popup.css') }}">
 
     <!--====== Slick css ======-->
-    <link rel="stylesheet" href="landp/assets/css/slick.css">
+    <link rel="stylesheet" href="{{ asset('landp/assets/css/slick.css') }}">
 
     <!--====== Animate css ======-->
-    <link rel="stylesheet" href="landp/assets/css/animate.css">
+    <link rel="stylesheet" href="{{ asset('landp/assets/css/animate.css') }}">
 
     <!--====== Default css ======-->
-    <link rel="stylesheet" href="landp/assets/css/default.css">
+    <link rel="stylesheet" href="{{ asset('landp/assets/css/default.css') }}">
 
     <!--====== Style css ======-->
-    <link rel="stylesheet" href="landp/assets/css/style.css">
+    <link rel="stylesheet" href="{{ asset('landp/assets/css/style.css') }}">
     @yield('styles')
 </head>
 <body>
-
-<!--====== PRELOADER PART START ======--
-    <div class="preloader">
-        <div class="loader">
-            <div class="ytp-spinner">
-                <div class="ytp-spinner-container">
-                    <div class="ytp-spinner-rotator">
-                        <div class="ytp-spinner-left">
-                            <div class="ytp-spinner-circle"></div>
-                        </div>
-                        <div class="ytp-spinner-right">
-                            <div class="ytp-spinner-circle"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-<!--====== PRELOADER PART ENDS ======-->
-
   <!--====== NAVBAR PART START ======-->
 
     <section class="header-area">
@@ -68,9 +48,9 @@
                             <a class="navbar-brand" href="{{ url('/') }}">
                             <img src="landp/assets/images/logo.png" alt="Logo">
                             </a>
-
-                            <ul class="navbar-nav ms-auto">
-                            <!-- Authentication Links -->
+                            <div class="collapse navbar-collapse sub-menu-bar" id="navbarEight">
+                                <ul class="navbar-nav ml-auto">
+                                    <!-- Authentication Links -->
                             @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
@@ -84,12 +64,13 @@
                                 </li>
                             @endif
                         @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <li class="nav-item">
+                                    <a id="navbar" href="#">
                                     {{ Auth::user()->name }}
                                 </a>
-
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                </li>
+                                <li>
+                                <div class="nav-item">
                                     <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
@@ -137,21 +118,10 @@
                                 </li>
                             @endif
                         @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            <li class="nav-item">
+                                <a id="nav-link" href="#">
                                     {{ Auth::user()->name }}
                                 </a>
-
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
                         @endguest
                     </ul>
                 </div>
@@ -162,7 +132,7 @@
             @yield('content')
         </main>
     </div>
-    <script src="{{ asset('assets/plugins/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('landp/assets/plugins/jquery/jquery.min.js') }}"></script>
     @yield('scripts')
 </body>
 </html>

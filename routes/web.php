@@ -4,6 +4,8 @@ use App\Http\Controllers\Admin\KarakteristikController;
 use App\Http\Controllers\Admin\PengetahuanController;
 use App\Http\Controllers\Admin\TipeController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\JurusanController;
+use App\Http\Controllers\Admin\SolusiController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -29,8 +31,12 @@ Route::middleware(['auth', 'role:Admin'])->group(function () {
         Route::resource('/tipe', TipeController::class);
         Route::resource('/karakteristik', KarakteristikController::class);
         Route::resource('/pengetahuan', PengetahuanController::class);
+        Route::resource('/jurusan', JurusanController::class);
+        Route::resource('/solusi', SolusiController::class);
         Route::get('/show-tipe', [PengetahuanController::class, 'showTipe'])->name('show-tipe');
         Route::get('/show-karakteristik', [PengetahuanController::class, 'showKarakteristik'])->name('show-karakteristik');
+        Route::get('/show-tipe', [SolusiController::class, 'showTipe'])->name('show-tipe');
+        Route::get('/show-jurusan', [SolusiController::class, 'showJurusan'])->name('show-jurusan');
     });
 });
 

@@ -4,7 +4,7 @@
     <a href="index3.html" class="brand-link">
         <img src="{{ asset('assets/dist/img/AdminLTELogo.png') }}" alt="AdminLTE Logo"
             class="brand-image img-circle elevation-3" style="opacity: .8">
-        <span class="brand-text font-weight-light">AdminLTE</span>
+        <span class="brand-text font-weight-light">TalinTest</span>
     </a>
 
     <!-- Sidebar -->
@@ -77,6 +77,22 @@
                         <i class="nav-icon fas fa-chart-bar"></i>
                         <p>
                             Pengetahuan
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('admin.jurusan.index') }}" class="nav-link @if(Request::segment(2) == 'jurusan') active @endif">
+                        <i class="nav-icon fas fa-user-circle" aria-hidden="true"></i>
+                        <p>
+                            Jurusan
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('admin.solusi.index') }}" class="nav-link @if(Request::segment(2) == 'solusi') active @endif">
+                        <i class="nav-icon fas fa-chart-bar"></i>
+                        <p>
+                            Solusi
                         </p>
                     </a>
                 </li>
