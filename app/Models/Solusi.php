@@ -14,6 +14,7 @@ class Solusi extends Model
     public function tipe()
     {
         return $this->belongsTo(Tipe::class, 'tipe_id', 'id');
+
     }
 
     public function jurusan()

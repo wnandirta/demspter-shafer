@@ -31,7 +31,7 @@
                                             <td>{{ $row->densitas }}</td>
                                             <td>
                                                 <form onsubmit="return confirm('Apakah Anda Yakin?')"
-                                                    action="{{ route('admin.karakteristik.destroy', $row->id) }}" method="post">
+                                                    action="{{ route('guru.karakteristik.destroy', $row->id) }}" method="post">
                                                     @csrf
                                                     @method('delete')
                                                     <a href="javascript:void(0)" class="btn btn-info btn-sm btn-tambah" data-id="{{ $row->id }}">Edit</a>
@@ -69,7 +69,7 @@
             var karakter_id = $(this).data('id');
             $.ajax({
                 type: "GEt",
-                url: "{{ route('admin.karakteristik.create') }}",
+                url: "{{ route('guru.karakteristik.create') }}",
                 data: {
                     karakter_id: karakter_id,
                 },
@@ -88,7 +88,7 @@
                 }
             });
             $.ajax({
-                url: "{{ route('admin.karakteristik.store') }}",
+                url: "{{ route('guru.karakteristik.store') }}",
                 method: 'post',
                 data: data,
                 contentType: false,

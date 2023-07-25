@@ -31,7 +31,8 @@
                                             <td>{{ $row->kategori }}</td>
                                             <td>
                                                 <form onsubmit="return confirm('Apakah Anda Yakin?')"
-                                                    action="{{ route('admin.tipe.destroy', $row->id) }}" method="post">
+                                                    action="{{ route('guru.tipe.destroy', $row->id) }}" method="post">
+
                                                     @csrf
                                                     @method('delete')
                                                     <a href="javascript:void(0)" class="btn btn-info btn-sm btn-tambah" data-id="{{ $row->id }}">Edit</a>
@@ -69,7 +70,7 @@
             var tipe_id = $(this).data('id');
             $.ajax({
                 type: "GEt",
-                url: "{{ route('admin.tipe.create') }}",
+                url: "{{ route('guru.tipe.create') }}",
                 data: {
                     tipe_id: tipe_id,
                 },
@@ -88,7 +89,7 @@
                 }
             });
             $.ajax({
-                url: "{{ route('admin.tipe.store') }}",
+                url: "{{ route('guru.tipe.store') }}",
                 method: 'post',
                 data: data,
                 contentType: false,

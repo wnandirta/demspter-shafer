@@ -9,6 +9,7 @@ use App\Models\Tipe;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use DB;
 
 class HomeController extends Controller
 {
@@ -29,19 +30,34 @@ class HomeController extends Controller
      */
     public function index()
     {
-        if (Auth::user()->role == 'Admin') {
+        // if (Auth::user()->role == 'Admin') {
+        //     $siswa = User::where('role', 'Siswa')->count();
+        //     $guru = User::where('role', 'Guru')->count();
+        //     $minat = Tipe::where('kategori', 'Minat')->count();
+        //     $bakat = Tipe::where('kategori', 'Bakat')->count();
+        //     $karakter = Karakteristik::count();
+        //     return view('pages.admin.dashboard', compact('siswa', 'guru', 'minat', 'bakat', 'karakter'));
+        // } else if (Auth::user()->role == 'Guru') {
+        //     $siswa = User::where('role', 'Siswa')->count();
+        //     $minat = Tipe::where('kategori', 'Minat')->count();
+        //     $bakat = Tipe::where('kategori', 'Bakat')->count();
+        //     return view('pages.guru.dashboard', compact('siswa', 'minat', 'bakat'));
+        // } 
+        if (Auth::user()->role != 'Siswa') {
             $siswa = User::where('role', 'Siswa')->count();
             $guru = User::where('role', 'Guru')->count();
             $minat = Tipe::where('kategori', 'Minat')->count();
             $bakat = Tipe::where('kategori', 'Bakat')->count();
             $karakter = Karakteristik::count();
-            return view('pages.admin.dashboard', compact('siswa', 'guru', 'minat', 'bakat', 'karakter'));
-        } else if (Auth::user()->role == 'Guru') {
-            $siswa = User::where('role', 'Siswa')->count();
-            $minat = Tipe::where('kategori', 'Minat')->count();
-            $bakat = Tipe::where('kategori', 'Bakat')->count();
-            return view('pages.guru.dashboard', compact('siswa', 'guru', 'minat', 'bakat', 'karakter'));
-        } else if (Auth::user()->role == 'Siswa') {
+            $kelasArr = DB::table('kelas as k')
+            ->select('k.kelas', DB::Raw("GROUP_CONCAT(k.siswa_id) as idSiswa"))
+            ->groupBy('k.kelas')
+            ->get();
+            $kelas = count($kelasArr);
+            // dd($kelas);
+            return view('pages.admin.dashboard', compact('siswa','kelas', 'guru', 'minat', 'bakat', 'karakter'));
+        }
+        else if (Auth::user()->role == 'Siswa') {
             return view('home');
         }
     }

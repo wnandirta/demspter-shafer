@@ -11,7 +11,7 @@
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
-                            <form action="{{ route('admin.pengetahuan.store') }}" method="post" >
+                            <form action="{{ route('guru.pengetahuan.store') }}" method="post" >
                                 @csrf
                                 @method('post')
                                 <div class="row mb-3">
@@ -26,7 +26,7 @@
                                     <div class="form-group col-12 col-md-4">
                                         <label for="kode_karakter">Aksi</label><br>
                                         <button type="submit" class="btn btn-success">Simpan</button>
-                                        <a href="{{ route('admin.pengetahuan.index') }}" class="btn btn-danger">Batal</a>
+                                        <a href="{{ route('guru.pengetahuan.index') }}" class="btn btn-danger">Batal</a>
                                     </div>
                                 </div>
                             </form>
@@ -67,7 +67,7 @@
                                                     @foreach ($row as $aksi)
                                                     <li class="list-group-item text-center">
                                                         <form onsubmit="return confirm('Apakah Anda Yakin?')"
-                                                            action="{{ route('admin.pengetahuan.destroy', $aksi->id) }}" method="post">
+                                                            action="{{ route('guru.pengetahuan.destroy', $aksi->id) }}" method="post">
                                                             @csrf
                                                             @method('delete')
                                                             <button type="submit" class="btn btn-danger btn-xs">Hapus</button>
@@ -99,7 +99,7 @@
                 theme: 'bootstrap4',
                 minimumInputLength: 2,
                 ajax: {
-                    url: "{{ route('admin.show-tipe') }}",
+                    url: "{{ route('guru.show-tipe') }}",
                     dataType: 'json',
                     delay: 250,
                     data: function (params) {
@@ -119,7 +119,7 @@
             $('#karakteristik_id').select2({
                 theme: 'bootstrap4',
                 ajax: {
-                    url: "{{ route('admin.show-karakteristik') }}",
+                    url: "{{ route('guru.show-karakteristik') }}",
                     dataType: 'json',
                     delay: 250,
                     data: function (params) {

@@ -47,7 +47,7 @@
                         </p>
                     </a>
                 </li>
-
+                @if (auth()->user()->role == 'Admin')
                 <li class="nav-item">
                     <a href="{{ route('admin.user.index') }}" class="nav-link @if(Request::segment(2) == 'user') active @endif">
                         <i class="nav-icon fas fa-users"></i>
@@ -57,7 +57,18 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('admin.tipe.index') }}" class="nav-link @if(Request::segment(2) == 'tipe') active @endif">
+                    <a href="{{ route('admin.kelas.index') }}" class="nav-link @if(Request::segment(2) == 'kelas') active @endif">
+                        <i class="nav-icon fas fa-door-closed"></i>
+                        <p>
+                            Kelas
+                        </p>
+                    </a>
+                </li>
+                    
+                @endif
+                @if (auth()->user()->role == 'Guru')
+                <li class="nav-item">
+                    <a href="{{ route('guru.tipe.index') }}" class="nav-link @if(Request::segment(2) == 'tipe') active @endif">
                         <i class="nav-icon fas fa-folder"></i>
                         <p>
                             Tipe
@@ -65,7 +76,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('admin.karakteristik.index') }}" class="nav-link @if(Request::segment(2) == 'karakteristik') active @endif">
+                    <a href="{{ route('guru.karakteristik.index') }}" class="nav-link @if(Request::segment(2) == 'karakteristik') active @endif">
                         <i class="nav-icon fas fa-user-circle" aria-hidden="true"></i>
                         <p>
                             Karakteristik
@@ -73,7 +84,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('admin.pengetahuan.index') }}" class="nav-link @if(Request::segment(2) == 'pengetahuan') active @endif">
+                    <a href="{{ route('guru.pengetahuan.index') }}" class="nav-link @if(Request::segment(2) == 'pengetahuan') active @endif">
                         <i class="nav-icon fas fa-chart-bar"></i>
                         <p>
                             Pengetahuan
@@ -81,7 +92,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('admin.jurusan.index') }}" class="nav-link @if(Request::segment(2) == 'jurusan') active @endif">
+                    <a href="{{ route('guru.jurusan.index') }}" class="nav-link @if(Request::segment(2) == 'jurusan') active @endif">
                         <i class="nav-icon fas fa-user-circle" aria-hidden="true"></i>
                         <p>
                             Jurusan
@@ -89,13 +100,15 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('admin.solusi.index') }}" class="nav-link @if(Request::segment(2) == 'solusi') active @endif">
+                    <a href="{{ route('guru.solusi.index') }}" class="nav-link @if(Request::segment(2) == 'solusi') active @endif">
                         <i class="nav-icon fas fa-chart-bar"></i>
                         <p>
                             Solusi
                         </p>
                     </a>
                 </li>
+                @endif
+
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

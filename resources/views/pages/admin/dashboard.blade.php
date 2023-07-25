@@ -21,80 +21,101 @@
 <!-- Main content -->
 <section class="content">
     <div class="container-fluid">
-        <!-- Small boxes (Stat box) -->
-        <div class="row">
-            <div class="col-lg-2 col-md-4 col-6">
-                <!-- small box -->
-                <div class="small-box bg-warning">
-                    <div class="inner">
-                        <h3>{{ $siswa }}</h3>
-                        <p>Siswa</p>
+            <!-- Admin Dashboard -->
+            @if (auth()->user()->role == 'Admin')
+            <div class="row">
+                <div class="col-lg-2 col-md-4 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-warning">
+                        <div class="inner">
+                            <h3>{{ $siswa }}</h3>
+                            <p>Siswa</p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-person-add"></i>
+                        </div>
+                        <a href="{{ route('admin.user.index') }}" class="small-box-footer">Info lebih lanjut <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
-                    <div class="icon">
-                        <i class="ion ion-person-add"></i>
-                    </div>
-                    <a href="{{ route('admin.user.index') }}" class="small-box-footer">Info lebih lanjut <i class="fas fa-arrow-circle-right"></i></a>
                 </div>
-            </div>
-            <!-- ./col -->
-            <div class="col-lg-2 col-md-4 col-6">
-                <!-- small box -->
-                <div class="small-box bg-primary">
-                    <div class="inner">
-                        <h3>{{ $guru }}</h3>
-                        <p>Guru</p>
+                <!-- ./col -->
+                <div class="col-lg-2 col-md-4 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-primary">
+                        <div class="inner">
+                            <h3>{{ $guru }}</h3>
+                            <p>Guru</p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-person-add"></i>
+                        </div>
+                        <a href="{{ route('admin.user.index') }}" class="small-box-footer">Info lebih lanjut <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
-                    <div class="icon">
-                        <i class="ion ion-person-add"></i>
-                    </div>
-                    <a href="{{ route('admin.user.index') }}" class="small-box-footer">Info lebih lanjut <i class="fas fa-arrow-circle-right"></i></a>
                 </div>
-            </div>
-            <!-- ./col -->
-            <div class="col-lg-2 col-md-4 col-6">
-                <!-- small box -->
-                <div class="small-box bg-info">
-                    <div class="inner">
-                        <h3>{{ $minat }}</h3>
-                        <p>Tipe Minat</p>
+                <!-- ./col -->
+                <div class="col-lg-2 col-md-4 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-primary">
+                        <div class="inner">
+                            <h3>{{ $kelas }}</h3>
+                            <p>Kelas</p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-person"></i>
+                        </div>
+                        <a href="{{ route('admin.kelas.index') }}" class="small-box-footer">Info lebih lanjut <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
-                    <div class="icon">
-                        <i class="ion ion-stats-bars"></i>
-                    </div>
-                    <a href="{{ route('admin.tipe.index') }}" class="small-box-footer">Info lebih lanjut <i class="fas fa-arrow-circle-right"></i></a>
                 </div>
+                <!-- ./col -->
             </div>
-            <!-- ./col -->
-            <div class="col-lg-2 col-md-4 col-6">
-                <!-- small box -->
-                <div class="small-box bg-info">
-                    <div class="inner">
-                        <h3>{{ $bakat }}</h3>
-                        <p>Tipe Bakat</p>
+            @endif
+
+            @if (auth()->user()->role == 'Guru')
+                <div class="row">
+                    <div class="col-lg-2 col-md-4 col-6">
+                        <!-- small box -->
+                        <div class="small-box bg-info">
+                            <div class="inner">
+                                <h3>{{ $minat }}</h3>
+                                <p>Tipe Minat</p>
+                            </div>
+                            <div class="icon">
+                                <i class="ion ion-stats-bars"></i>
+                            </div>
+                            <a href="{{ route('guru.tipe.index') }}" class="small-box-footer">Info lebih lanjut <i class="fas fa-arrow-circle-right"></i></a>
+                        </div>
                     </div>
-                    <div class="icon">
-                        <i class="ion ion-stats-bars"></i>
+                    <!-- ./col -->
+                    <div class="col-lg-2 col-md-4 col-6">
+                        <!-- small box -->
+                        <div class="small-box bg-info">
+                            <div class="inner">
+                                <h3>{{ $bakat }}</h3>
+                                <p>Tipe Bakat</p>
+                            </div>
+                            <div class="icon">
+                                <i class="ion ion-stats-bars"></i>
+                            </div>
+                            <a href="{{ route('guru.tipe.index') }}" class="small-box-footer">Info lebih lanjut <i class="fas fa-arrow-circle-right"></i></a>
+                        </div>
                     </div>
-                    <a href="{{ route('admin.tipe.index') }}" class="small-box-footer">Info lebih lanjut <i class="fas fa-arrow-circle-right"></i></a>
+                    <!-- ./col -->
+                    <div class="col-lg-2 col-md-4 col-6">
+                        <!-- small box -->
+                        <div class="small-box bg-danger">
+                            <div class="inner">
+                                <h3>{{ $karakter }}</h3>
+                                <p>Karakteristik</p>
+                            </div>
+                            <div class="icon">
+                                <i class="ion ion-pie-graph"></i>
+                            </div>
+                            <a href="{{ route('guru.karakteristik.index') }}" class="small-box-footer">Info lebih lanjut <i class="fas fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+                    <!-- ./col -->
                 </div>
-            </div>
-            <!-- ./col -->
-            <div class="col-lg-2 col-md-4 col-6">
-                <!-- small box -->
-                <div class="small-box bg-danger">
-                    <div class="inner">
-                        <h3>{{ $karakter }}</h3>
-                        <p>Karakteristik</p>
-                    </div>
-                    <div class="icon">
-                        <i class="ion ion-pie-graph"></i>
-                    </div>
-                    <a href="{{ route('admin.karakteristik.index') }}" class="small-box-footer">Info lebih lanjut <i class="fas fa-arrow-circle-right"></i></a>
-                </div>
-            </div>
-            <!-- ./col -->
-        </div>
-        <!-- /.row -->
+            @endif
+            <!-- /.row -->
     </div><!-- /.container-fluid -->
 </section>
 <!-- /.content -->

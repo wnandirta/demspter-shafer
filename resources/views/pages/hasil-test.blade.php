@@ -276,7 +276,6 @@
                                             @endif
                                         @endfor
                                     </div>
-                                    <button class="btn btn-success mb-3 btn-show">Lihat Perhitungan</button>
                                     <table class="table table-bordered text-center">
                                         <tr>
                                             <th>Nama</th>
@@ -290,23 +289,6 @@
                                                 @endfor
                                             </td>
                                             <td>{{$nilaipenyterbesar}}</td>
-                                        </tr>
-                                    </table>
-                                    <table class="table table-bordered text-center">
-                                        <tr>
-                                            <th>Tipe Kepribadian</th>
-                                            <th>Rekomendasi Jurusan</th>
-                                        </tr>
-                                        <tr>
-                                            <th>Realistic</th>
-                                            <th>
-                                                <ul>
-                                                    <li>
-                                                        <li>
-                                                        <li>
-                                                            <li>
-                                                </ul>
-                                            </th>
                                         </tr>
                                     </table>
                                 </div>

@@ -7,26 +7,30 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Tabel solusi</h3>
+                            <h3 class="card-title">Tabel Kelas</h3>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
-                            <form action="{{ route('guru.solusi.store') }}" method="post" >
+                            <form action="{{ route('admin.kelas.store') }}" method="post" >
                                 @csrf
                                 @method('post')
                                 <div class="row mb-3">
                                     <div class="form-group col-12 col-md-4">
-                                        <label for="tipe_id">Tipe</label>
-                                        <select id="tipe_id" name="tipe_id" class="form-control" data-placeholder="Pilih Tipe" style="width: 100%;" required></select>
+                                        <label for="">Kelas </label>
+                                        <input type="text" name="kelas" class="form-control">
                                     </div>
                                     <div class="form-group col-12 col-md-4">
-                                        <label for="jurusan_id">Jurusan</label>
-                                        <select id="jurusan_id" name="jurusan_id[]" class="form-control" multiple="multiple" data-placeholder="Pilih jurusan" style="width: 100%;" required></select>
+                                        <label for="guru_id">Guru</label>
+                                        <select id="guru_id" name="guru_id" class="form-control" data-placeholder="Pilih Guru" style="width: 100%;" required></select>
+                                    </div>
+                                    <div class="form-group col-12 col-md-4">
+                                        <label for="siswa_id">Siswa</label>
+                                        <select id="siswa_id" name="siswa_id[]" class="form-control" multiple="multiple" data-placeholder="Pilih Siswa" style="width: 100%;" required></select>
                                     </div>
                                     <div class="form-group col-12 col-md-4">
                                         <label for="kode_jurusan">Aksi</label><br>
                                         <button type="submit" class="btn btn-success">Simpan</button>
-                                        <a href="{{ route('guru.solusi.index') }}" class="btn btn-danger">Batal</a>
+                                        <a href="{{ route('admin.kelas.index') }}" class="btn btn-danger">Batal</a>
                                     </div>
                                 </div>
                             </form>
@@ -34,42 +38,34 @@
                                 <thead>
                                     <tr>
                                         <th>No</th>
-                                        <th>Tipe</th>
-                                        <th>Jurusan</th>
+                                        <th>Kelas</th>
+                                        <th>Guru</th>
+                                        <th>Siswa</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($solusi as $key => $row)
-                                    @php
-                                        $tipe = App\Models\Tipe::find($key);
-                                    @endphp
+                                    <?php $no = 1; $count = count($data); ?>
+                                    @if ($count > 0)
+                                    @foreach ($data as $item)
                                         <tr>
-                                            <td class="align-middle">{{ $loop->iteration }}</td>
-                                            <td class="align-middle">{{ $tipe->kode_tipe }} - {{ $tipe->nama_tipe }}</td>
+                                            <td>{{$no++}}</td>
+                                            <td>{{$item->kelas}}</td>
+                                            <td>{{$item->namaGuru}}</td>
+                                            <td>{{$item->namaSiswa}}</td>
                                             <td>
-                                                <ul class="list-group">
-                                                    @foreach ($row as $k)
-                                                    <li class="list-group-item text-left">{{ $k->jurusan->kode_jurusan }} - {{ $k->jurusan->nama_jurusan }}</li>
-                                                    @endforeach
-                                                </ul>
+                                                <a href="kelas-delete/{{$item->id}}" class="btn btn-danger btn-xs">Hapus</a>
+                                                {{-- <button type="submit" class="btn btn-danger btn-xs">Hapus</button> --}}
                                             </td>
-                                            <td>
-                                                <ul class="list-group">
-                                                    @foreach ($row as $aksi)
-                                                    <li class="list-group-item text-center">
-                                                        <form onsubmit="return confirm('Apakah Anda Yakin?')"
-                                                            action="{{ route('guru.solusi.destroy', $aksi->id) }}" method="post">
-                                                            @csrf
-                                                            @method('delete')
-                                                            <button type="submit" class="btn btn-danger btn-xs">Hapus</button>
-                                                        </form>
-                                                    </li>
-                                                    @endforeach
-                                                </ul>
-                                            </td>
+
                                         </tr>
                                     @endforeach
+                                    @else
+                                    <tr>
+                                        <td colspan="5">Data Belum Ada</td>
+                                    </tr>
+
+                                    @endif
                                 </tbody>
                             </table>
                         </div>
@@ -87,11 +83,10 @@
 @section('scripts')
     <script>
         $(function () {
-            $('#tipe_id').select2({
+            $('#guru_id').select2({
                 theme: 'bootstrap4',
-                minimumInputLength: 2,
                 ajax: {
-                    url: "{{ route('guru.show-tipe') }}",
+                    url: "{{ route('admin.show-guru') }}",
                     dataType: 'json',
                     delay: 250,
                     data: function (params) {
@@ -108,10 +103,10 @@
                 }
             })
 
-            $('#jurusan_id').select2({
+            $('#siswa_id').select2({
                 theme: 'bootstrap4',
                 ajax: {
-                    url: "{{ route('guru.show-jurusan') }}",
+                    url: "{{ route('admin.show-siswa') }}",
                     dataType: 'json',
                     delay: 250,
                     data: function (params) {
